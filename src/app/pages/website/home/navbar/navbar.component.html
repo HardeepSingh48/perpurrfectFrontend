@@ -1,0 +1,83 @@
+<div class="navbar-top">
+    <div class="navbar-hotline">
+      <span>Hotline 24/7</span>
+      <span>(025) 3886 25 16</span>
+    </div>
+    <div class="navbar-top-right">
+      <a href="/login">Sell on PetPurrfect</a>
+      <a href="/login">Order Tracking</a>
+      <select>
+        <option>USD</option>
+      </select>
+      <select>
+        <option>Eng</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="navbar-main">
+    <div class="navbar-brand">
+      <img src="logo.PNG" alt="Logo">
+      <a href="/home">
+        <h1>PetPurrfect</h1>
+      </a>
+
+      </div>
+  
+    <div class="navbar-menu">
+      <ul>
+        <li class="dropdown">
+          <a href="#">Homes <span class="arrow">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Home 1</a></li>
+            <li><a href="#">Home 2</a></li>
+            <li><a href="#">Home 3</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Pages <span class="arrow">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Products <span class="arrow">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Laptops</a></li>
+            <li><a href="#">Phones</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  
+    <div class="navbar-cart">
+      <span class="navbar-welcome">Welcome <a href="/login">Log Out</a></span>
+      <div class="navbar-cart-icon">
+        <a routerLink ="/cart"><i class="fas fa-shopping-cart"></i><span>Cart: ${{calculateTotalAmount()}}</span></a>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="navbar-bottom">
+    <div class="navbar-search">
+      <select [(ngModel)]="productObj.categoryId" class="form-select" required >
+        <option *ngFor="let cate of categoryList" [value]="cate.categoryId">
+          {{cate.categoryName}}
+          
+      </option>
+      </select>
+      <input type="text" placeholder="Search anything..." (keyup.enter)="onSearch($event)">
+      <button>Search</button>
+    </div>
+    <div class="navbar-info">
+      <span>FREE SHIPPING OVER $199</span>
+      <span>30 DAYS MONEY BACK</span>
+      <span>100% SECURE PAYMENT</span>
+    </div>
+  </div>
+  

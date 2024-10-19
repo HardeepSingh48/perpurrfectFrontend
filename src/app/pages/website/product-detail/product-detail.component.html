@@ -1,0 +1,65 @@
+<div class="product-detail">
+  <div class="product-detail__left">
+    <img [src]="product.productImageUrl" class="product-image">
+  </div>
+
+  <div class="product-detail__right">
+    <h2>{{ product.productName }}</h2>
+    <p class="product-price">${{ product.productPrice }}</p>
+
+    <div class="product-description">
+      <h3>Description</h3>
+      <p>{{ product.productDescription }}</p>
+    </div>
+
+    <div class="product-details">
+      <h3>Product Details</h3>
+      <ul>
+        <li><strong>Category:</strong> {{ product.categoryId }}</li>
+        <li><strong>Delivery Time:</strong> {{ product.deliveryTimeSpan }} days</li>
+        <li><strong>Stock:</strong> {{ product.inStock ? 'In Stock' : 'Out of Stock' }}</li>
+        <li><strong>Rating:</strong>
+          <div class="stars" (click)="onRatingChange($event)">
+            <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star">&#9733;</span>
+          </div>
+          {{ product.rating }} stars
+        </li>
+      </ul>
+    </div>
+
+    <!-- Add to Cart and Create Buttons -->
+     @if (isProductinCart(product._id!)) {
+       <button class="add-to-cart-button" (click)="addToCart(product)">
+        <i class="fas fa-cart-plus"> </i> Add to Cart
+       </button>
+     }
+     @else {
+      <button class="add-to-cart-button" (click)="addToCart(product)">
+        <i class="fas fa-trash"></i> Remove from Cart
+      </button>
+     }
+
+    <!-- Reviews Section -->
+    <div class="product-reviews">
+      <h3>Customer Reviews</h3>
+      <div class="review">
+        <p><em>Rating: {{ product.rating }} stars</em></p>
+      </div>
+
+      <div class="add-review">
+        <h4>Add a Review</h4>
+        <form (ngSubmit)="submitReview()">
+          <label for="reviewText">Review:</label>
+          <textarea id="reviewText" name="comment" required></textarea>
+
+          <label for="reviewRating">Rating:</label>
+          <div class="stars" (click)="onRatingChange($event)">
+            <span *ngFor="let star of [1, 2, 3, 4, 5]" [class.filled]="star <= newReview.rating" class="star"
+              (click)="setReviewRating(star)">&star;</span>
+          </div>
+          <button type="submit">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

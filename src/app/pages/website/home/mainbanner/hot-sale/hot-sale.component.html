@@ -1,0 +1,74 @@
+<div class="home-container">
+    <!-- Sidebar Section -->
+    <section class="flash-sale">
+      <h2> &#9889; Flash Sale</h2>
+      <ul class="offer-list">
+        <li><button>40% OFFER</button></li>
+        <!-- <li><button>CHRISTMAS OFFER</button></li> -->
+        <!-- <li><button>HAND PICKED</button></li> -->
+        <li><button>BEST SELL</button></li>
+        <li><button>RECENTLY ADDED</button></li>
+      </ul>
+      <img src="https://www.transparentpng.com/thumb/dog/file-clipart-png-dog-3.png" class="dog-image" alt="Dog Image" />
+    </section>
+  
+    <!-- Product Slider Section -->
+    <section class="product-slider">
+      <div class="slider-header">
+        <div class="slider-nav">
+          <button class="prev-btn" (click)="prevSlide()">&#10094;</button>
+          <button class="next-btn" (click)="nextSlide()">&#10095;</button>
+        </div>
+      </div>
+      <div class="slider-wrapper" #slider>
+        <div class="slider">
+          <div class="slider-item" *ngFor="let product of productsList" [routerLink]="'/products/' +product._id">
+            <img [src]="product.productImageUrl" [alt]="product.productName" class="product-image">
+            <div class="product-details">
+              <h3>{{ product.productName }}</h3>
+              <div class="rating">
+                <span *ngFor="let star of product.rating">&#9733;</span>
+                <span>({{ product.reviews }})</span>
+              </div>
+              <p class="price">{{ product.productPrice | currency }}</p>
+              <div class="product-badges">
+                <span *ngIf="product.isOnSale" class="badge sale-badge">SAVE ${{ product.discount }}</span>
+                <span *ngIf="product.isFreeShipping" class="badge shipping-badge">FREE SHIPPING</span>
+              </div>
+              <div class="availability">
+                <span [ngClass]="{'in-stock': product.inStock, 'out-of-stock': !product.inStock}">
+                  {{ product.inStock ? 'In stock' : 'Out of stocks' }}
+                </span>
+              </div>
+              <div class="add-to-cart-btnd">
+
+                <a [routerLink]="'/products/' +product._id" class="buy-now-btn">Buy Now</a>
+                <button class="add-to-cart-btn" (click)="addToCart(product) ; $event.stopPropagation();">
+                  @if(isProductinCart(product._id!)){
+                    <i class="fas fa-trash"></i>
+                  }
+                  @else{
+                    <i class="fas fa-cart-plus"></i> 
+                  }
+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Newsletter Section -->
+</div>
+
+
+    <section class="newsletter">
+        <h3>Newsletter</h3>
+        <p>40% offer on the way</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email address">
+            <button>SUBSCRIBE</button>
+        </div>
+    </section>
+    

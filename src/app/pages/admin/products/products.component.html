@@ -1,0 +1,113 @@
+<div class="row">
+    <div [ngClass]="isSidePanelVisible ? 'col-8' : 'col-12'">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <div class="row">
+                    <div class="col-6">
+                        Product List
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-sm btn-success" (click)="openSidePanel()">New</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3" *ngFor="let product of productsList">
+                        <div class="card">
+                            <img class="card-img-top" [src]="product.productImageUrl" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title">{{product.productName}}</h4>
+                                <p class="card-text">{{product.categoryName}}</p>
+                                <a  class="btn btn-primary" (click)="onEdit(product)">Edit</a>
+                                <a href="#" class="btn btn-danger mx-2" (click)="onDelete(product)">Delete</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4" *ngIf="isSidePanelVisible">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <div class="row">
+                    <div class="col-6">
+                        New Product
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-sm btn-success" (click)="closeSidePanel()">Close</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">SKU</label>
+                        <input type="text" [(ngModel)]="productObj.productSku" class="form-control" required>
+                        <div *ngIf="isSubmitted && !productObj.productSku" class="error-message">Product SKU is required</div>
+                    </div>
+                    <div class="col-6">
+                        <label for="">Name</label>
+                        <input type="text" [(ngModel)]="productObj.productName" class="form-control" required>
+                        <div *ngIf="isSubmitted && !productObj.productName" class="error-message">Product Name is required</div>
+                    </div>
+                    <div class="col-6">
+                        <label for="">Short Name</label>
+                        <input type="text" [(ngModel)]="productObj.productShortName" class="form-control" required>
+                        <div *ngIf="isSubmitted && !productObj.productShortName" class="error-message">Product Short Name is required</div>
+                    </div>
+                    <div class="col-6">
+                        <label for="">Price</label>
+                        <input type="text" [(ngModel)]="productObj.productPrice" class="form-control" required>
+                        <div *ngIf="isSubmitted && !productObj.productPrice" class="error-message">Product Price is required</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Category</label>
+                            <select [(ngModel)]="productObj.categoryId" class="form-select" required>
+                                <option *ngFor="let cate of categoryList" [value]="cate.categoryId">
+                                    {{cate.categoryName}}
+
+                                </option>
+                            </select>
+                            <div *ngIf="isSubmitted && !productObj.categoryId" class="error-message">Product Category is required</div>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Delivery Time Span</label>
+                            <input type="text" [(ngModel)]="productObj.deliveryTimeSpan" class="form-control" required>
+                            <div *ngIf="isSubmitted && !productObj.deliveryTimeSpan" class="error-message">Delivery Time Span is required</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="">Img Url</label>
+                            <input type="text" [(ngModel)]="productObj.productImageUrl" class="form-control" required>
+                            <div *ngIf="isSubmitted && !productObj.productImageUrl" class="error-message">Product Image URL is required</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="">Product Description</label>
+                            <textarea rows="4" class="form-control" [(ngModel)]="productObj.productDescription" required></textarea>
+                            <div *ngIf="isSubmitted && !productObj.productDescription" class="error-message">Product Description is required</div>
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col-6 text-center">
+                            <button class="btn btn-success" (click)="resetForm()">Reset</button>
+                        </div>
+                        <div class="col-6 text-center">
+                            <button class="btn btn-success" *ngIf="productObj.productId ==0" (click)="onSave()">Create Product</button>
+                            <button class="btn btn-primary" *ngIf="productObj.productId !==0" (click)="onUpdate()">Update Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

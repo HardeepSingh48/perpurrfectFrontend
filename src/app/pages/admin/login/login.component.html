@@ -1,0 +1,47 @@
+<!-- <body> -->
+    <div class="sign-container">
+
+        
+        <div class="sign-in-container">
+            
+            <div class="sign-column s1">
+                <div class="sign-column-face s2">
+                    <div class="s3">
+                        <div class="sign-header-section">
+                            <div class="sign-in-title my-3">
+                                Login Page
+                            </div>
+                            
+                        </div>
+                        <div class="slice-container">
+                            <div class="slice-text-c">
+                                <div class="slicer"></div>
+                                
+                            </div>
+                        </div>
+                        <form (ngSubmit)="onLogin()" class="input-container">
+                            <input type="text" name="username" [(ngModel)]="username" required placeholder="Username">
+                            <input type="password" name="password" [(ngModel)]="password" required placeholder="Password">
+                            <a href="#" class="alt-f">
+                                Forgot Password ?
+                            </a>
+                            <button [disabled]="!username || !password" type="submit">
+                                Sign in
+                            </button>
+                            <div href="#" class="alt-f-full">
+                                Not a Member yet ?
+                                <a routerLink="/signup"  class="alt-f">
+                                    Sign up
+                                </a>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    <!-- </body> -->
+</div>
